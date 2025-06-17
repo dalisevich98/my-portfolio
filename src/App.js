@@ -247,13 +247,13 @@ const Portfolio = () => {
           <div className="mb-8">
             <canvas 
               ref={canvasRef}
-              width={200}
-              height={100}
+              width={400}
+              height={200}
               className="mx-auto rounded-lg"
             />
           </div>
           
-          <div className="flex flex-wrap justify-center gap-4 mb-12">
+          <div className="flex flex-wrap justify-center gap-4 mb-20">
             <a 
               href="mailto:diana.alisevich001@gmail.com" 
               className="flex items-center bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg transition-all duration-300 transform hover:scale-105"
