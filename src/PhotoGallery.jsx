@@ -1,10 +1,11 @@
 import React, { useState, useCallback } from 'react';
-import { Image, Upload, X, Check } from 'lucide-react';
+import { Upload, X, Check } from 'lucide-react';
 
 const PhotoGallery = () => {
   const [dragActive, setDragActive] = useState(false);
   const [uploadedImages, setUploadedImages] = useState([]);
 
+  // Handle drag events
   const handleDrag = useCallback((e) => {
     e.preventDefault();
     e.stopPropagation();
@@ -15,23 +16,7 @@ const PhotoGallery = () => {
     }
   }, []);
 
-  const handleDrop = useCallback((e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setDragActive(false);
-
-    if (e.dataTransfer.files && e.dataTransfer.files[0]) {
-      handleFiles(e.dataTransfer.files);
-    }
-  }, []);
-
-  const handleChange = useCallback((e) => {
-    e.preventDefault();
-    if (e.target.files && e.target.files[0]) {
-      handleFiles(e.target.files);
-    }
-  }, []);
-
+  // Process uploaded files
   const handleFiles = useCallback((files) => {
     Array.from(files).forEach(file => {
       if (file.type.startsWith('image/')) {
@@ -51,6 +36,26 @@ const PhotoGallery = () => {
     });
   }, []);
 
+  // Handle dropped files
+  const handleDrop = useCallback((e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setDragActive(false);
+
+    if (e.dataTransfer.files && e.dataTransfer.files[0]) {
+      handleFiles(e.dataTransfer.files);
+    }
+  }, [handleFiles]);
+
+  // Handle file input change
+  const handleChange = useCallback((e) => {
+    e.preventDefault();
+    if (e.target.files && e.target.files[0]) {
+      handleFiles(e.target.files);
+    }
+  }, [handleFiles]);
+
+  // Remove uploaded image
   const removeImage = useCallback((id) => {
     setUploadedImages(prev => prev.filter(img => img.id !== id));
   }, []);
@@ -144,6 +149,17 @@ const PhotoGallery = () => {
           ))}
         </div>
       )}
+
+      {/* Technical Info */}
+      <div className="bg-slate-800/30 backdrop-blur-sm border border-slate-700 rounded-lg p-4">
+        <h4 className="text-sm font-bold text-white mb-2">How This Works</h4>
+        <ul className="text-gray-400 space-y-1 text-xs">
+          <li>• HTML5 Drag and Drop API with React event handlers</li>
+          <li>• FileReader API converts images to base64 for preview</li>
+          <li>• Visual feedback shows drag state with animations</li>
+          <li>• File validation ensures only images are accepted</li>
+        </ul>
+      </div>
     </div>
   );
 };
