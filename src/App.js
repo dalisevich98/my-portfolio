@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { ChevronDown, Mail, Phone, MapPin, Linkedin, Github, Calendar, Code, Camera, Plane, Book, Coffee, ExternalLink, CheckCircle, Download, Send } from 'lucide-react';
+import { ChevronDown, Mail, Phone, MapPin, Linkedin, Github, Calendar, Code, Camera, Plane, Book, Coffee, ExternalLink, CheckCircle, Download, Send, X, Globe, Target, Zap, Database, Trophy, Clock } from 'lucide-react';
 
 import './styles/Portfolio.css';
 import PhotoGallery from './PhotoGallery';
@@ -28,6 +28,7 @@ const Portfolio = () => {
     subject: '',
     message: ''
   });
+  const [selectedProject, setSelectedProject] = useState(null);
   const [galleryFilter, setGalleryFilter] = useState('all');
   const [apiHelper] = useState(() => APIHelper.getInstance());
   const canvasRef = useRef(null);
@@ -253,7 +254,7 @@ const Portfolio = () => {
             />
           </div>
           
-          <div className="flex flex-wrap justify-center gap-4 mb-20">
+          <div className="flex flex-wrap justify-center gap-4 mb-12">
             <a 
               href="mailto:diana.alisevich001@gmail.com" 
               className="flex items-center bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg transition-all duration-300 transform hover:scale-105"
@@ -389,7 +390,11 @@ const Portfolio = () => {
           <h2 className="text-4xl font-bold text-white text-center mb-12">Featured Projects</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {projects.map((project, index) => (
-              <article key={index} className="glassmorphism rounded-lg overflow-hidden shadow-2xl hover:transform hover:scale-105 transition-all duration-300">
+              <article 
+                key={index} 
+                className="glassmorphism rounded-lg overflow-hidden shadow-2xl hover:transform hover:scale-105 transition-all duration-300 cursor-pointer group"
+                onClick={() => setSelectedProject(project)}
+              >
                 <div className="relative">
                   <img 
                     src={project.image} 
@@ -399,15 +404,22 @@ const Portfolio = () => {
                   <div className="absolute top-4 right-4">
                     <span className={`px-3 py-1 rounded-full text-xs text-white ${
                       project.language === 'TypeScript' ? 'bg-blue-500' :
-                      project.language === 'JavaScript' ? 'bg-yellow-500' : 'bg-purple-500'
+                      project.language === 'JavaScript' ? 'bg-yellow-500' : 
+                      project.language === 'Java' ? 'bg-red-500' :
+                      project.language === 'Python' ? 'bg-green-500' : 'bg-purple-500'
                     }`}>
                       {project.language}
+                    </span>
+                  </div>
+                  <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition-all duration-300 flex items-center justify-center">
+                    <span className="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-lg font-semibold bg-blue-600 px-4 py-2 rounded-lg">
+                      Click for Details
                     </span>
                   </div>
                 </div>
                 <div className="p-6">
                   <div className="flex justify-between items-start mb-4">
-                    <h3 className="text-xl font-bold text-white">{project.title}</h3>
+                    <h3 className="text-xl font-bold text-white group-hover:text-blue-400 transition-colors">{project.title}</h3>
                     <span className="text-sm text-gray-400">{project.period}</span>
                   </div>
                   <p className="text-gray-300 mb-4 leading-relaxed">{project.description}</p>
@@ -421,25 +433,205 @@ const Portfolio = () => {
                   {(project.demoUrl || project.githubUrl) && (
                     <div className="flex space-x-3">
                       {project.demoUrl && (
-                        <a href={project.demoUrl} className="flex items-center text-blue-400 hover:text-blue-300">
+                        <button 
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            window.open(project.demoUrl, '_blank');
+                          }}
+                          className="flex items-center text-blue-400 hover:text-blue-300 transition-colors"
+                        >
                           <ExternalLink className="w-4 h-4 mr-1" />
                           Demo
-                        </a>
+                        </button>
                       )}
                       {project.githubUrl && (
-                        <a href={project.githubUrl} className="flex items-center text-gray-400 hover:text-gray-300">
+                        <button 
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            window.open(project.githubUrl, '_blank');
+                          }}
+                          className="flex items-center text-gray-400 hover:text-gray-300 transition-colors"
+                        >
                           <Github className="w-4 h-4 mr-1" />
                           Code
+                        </button>
+                      )}
+                    </div>
+                  )}
+                </div>
+              </article>
+            ))}
+          </div>
+
+          {/* Project Detail Modal */}
+          {selectedProject && (
+            <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 p-4" onClick={() => setSelectedProject(null)}>
+              <div className="bg-slate-800 rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto" onClick={(e) => e.stopPropagation()}>
+                {/* Modal Header */}
+                <div className="sticky top-0 bg-slate-800 border-b border-slate-700 p-6 flex justify-between items-start">
+                  <div>
+                    <h2 className="text-3xl font-bold text-white mb-2">{selectedProject.title}</h2>
+                    <div className="flex items-center gap-4 text-sm text-gray-400">
+                      <span className="flex items-center">
+                        <Calendar className="w-4 h-4 mr-1" />
+                        {selectedProject.period}
+                      </span>
+                      <span className="flex items-center">
+                        <Code className="w-4 h-4 mr-1" />
+                        {selectedProject.language}
+                      </span>
+                    </div>
+                  </div>
+                  <button 
+                    onClick={() => setSelectedProject(null)}
+                    className="text-gray-400 hover:text-white transition-colors"
+                  >
+                    <X className="w-6 h-6" />
+                  </button>
+                </div>
+
+                {/* Modal Content */}
+                <div className="p-6">
+                  {/* Project Image */}
+                  <div className="mb-6">
+                    <img 
+                      src={selectedProject.image} 
+                      alt={selectedProject.title}
+                      className="w-full h-64 object-cover rounded-lg"
+                    />
+                  </div>
+
+                  {/* Overview */}
+                  <div className="mb-8">
+                    <h3 className="text-xl font-bold text-white mb-3 flex items-center">
+                      <Globe className="w-5 h-5 mr-2 text-blue-400" />
+                      Project Overview
+                    </h3>
+                    <p className="text-gray-300 leading-relaxed">
+                      {selectedProject.overview || selectedProject.description}
+                    </p>
+                  </div>
+
+                  {/* Key Features */}
+                  {selectedProject.keyFeatures && (
+                    <div className="mb-8">
+                      <h3 className="text-xl font-bold text-white mb-3 flex items-center">
+                        <Target className="w-5 h-5 mr-2 text-green-400" />
+                        Key Features
+                      </h3>
+                      <ul className="space-y-2">
+                        {selectedProject.keyFeatures.map((feature, index) => (
+                          <li key={index} className="text-gray-300 flex items-start">
+                            <span className="text-green-400 mr-2 mt-1">•</span>
+                            {feature}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+
+                  {/* Technical Highlights */}
+                  {selectedProject.technicalHighlights && (
+                    <div className="mb-8">
+                      <h3 className="text-xl font-bold text-white mb-3 flex items-center">
+                        <Zap className="w-5 h-5 mr-2 text-yellow-400" />
+                        Technical Highlights
+                      </h3>
+                      <ul className="space-y-2">
+                        {selectedProject.technicalHighlights.map((highlight, index) => (
+                          <li key={index} className="text-gray-300 flex items-start">
+                            <span className="text-yellow-400 mr-2 mt-1">▸</span>
+                            {highlight}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+
+                  {/* Technologies Used */}
+                  <div className="mb-8">
+                    <h3 className="text-xl font-bold text-white mb-3 flex items-center">
+                      <Database className="w-5 h-5 mr-2 text-purple-400" />
+                      Technologies Used
+                    </h3>
+                    <div className="flex flex-wrap gap-2">
+                      {selectedProject.technologies.map((tech, index) => (
+                        <span key={index} className="px-3 py-2 bg-purple-600/30 text-purple-300 rounded-lg text-sm font-medium">
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Challenges & Solutions */}
+                  {selectedProject.challenges && (
+                    <div className="mb-8">
+                      <h3 className="text-xl font-bold text-white mb-3 flex items-center">
+                        <Trophy className="w-5 h-5 mr-2 text-orange-400" />
+                        Challenges & Solutions
+                      </h3>
+                      <ul className="space-y-2">
+                        {selectedProject.challenges.map((challenge, index) => (
+                          <li key={index} className="text-gray-300 flex items-start">
+                            <span className="text-orange-400 mr-2 mt-1">★</span>
+                            {challenge}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+
+                  {/* Project Metrics */}
+                  {selectedProject.metrics && (
+                    <div className="mb-8">
+                      <h3 className="text-xl font-bold text-white mb-3 flex items-center">
+                        <Clock className="w-5 h-5 mr-2 text-blue-400" />
+                        Project Impact
+                      </h3>
+                      <div className="grid md:grid-cols-3 gap-4">
+                        {Object.entries(selectedProject.metrics).map(([key, value], index) => (
+                          <div key={index} className="bg-slate-700/50 rounded-lg p-4 text-center">
+                            <div className="text-blue-400 font-bold text-lg capitalize mb-1">{key}</div>
+                            <div className="text-gray-300 text-sm">{value}</div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Action Buttons */}
+                  {(selectedProject.demoUrl || selectedProject.githubUrl) && (
+                    <div className="flex space-x-4 pt-4 border-t border-slate-700">
+                      {selectedProject.demoUrl && (
+                        <a 
+                          href={selectedProject.demoUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg transition-all duration-300 transform hover:scale-105"
+                        >
+                          <ExternalLink className="w-4 h-4 mr-2" />
+                          View Live Demo
+                        </a>
+                      )}
+                      {selectedProject.githubUrl && (
+                        <a 
+                          href={selectedProject.githubUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center bg-gray-600 hover:bg-gray-700 text-white px-6 py-3 rounded-lg transition-all duration-300 transform hover:scale-105"
+                        >
+                          <Github className="w-4 h-4 mr-2" />
+                          View Source Code
                         </a>
                       )}
                     </div>
-                 )}
-                  </div>
-             </article>
-           ))}
-         </div>
-       </div>
-     </section>
+                  )}
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+      </section>
 
      {/* Skills Section */}
      <section id="skills" className="py-20 bg-slate-800/50">
