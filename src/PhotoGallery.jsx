@@ -149,17 +149,6 @@ const PhotoGallery = () => {
           ))}
         </div>
       )}
-
-      {/* Technical Info */}
-      <div className="bg-slate-800/30 backdrop-blur-sm border border-slate-700 rounded-lg p-4">
-        <h4 className="text-sm font-bold text-white mb-2">How This Works</h4>
-        <ul className="text-gray-400 space-y-1 text-xs">
-          <li>• HTML5 Drag and Drop API with React event handlers</li>
-          <li>• FileReader API converts images to base64 for preview</li>
-          <li>• Visual feedback shows drag state with animations</li>
-          <li>• File validation ensures only images are accepted</li>
-        </ul>
-      </div>
     </div>
   );
 };
