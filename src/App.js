@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { ChevronDown, Mail, Phone, MapPin, Linkedin, Github, Calendar, Award, Code, Database, Cloud, Users, Camera, Plane, Book, Coffee, ExternalLink, Star, CheckCircle, Download, Send, User, Briefcase, Image, MessageSquare } from 'lucide-react';
+import { ChevronDown, Mail, Phone, MapPin, Linkedin, Github, Calendar, Code, Camera, Plane, Book, Coffee, ExternalLink, CheckCircle, Download, Send } from 'lucide-react';
 
 import './styles/Portfolio.css';
 import PhotoGallery from './PhotoGallery';
