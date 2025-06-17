@@ -1,0 +1,26 @@
+[
+  {
+    "title": "Student Management System",
+    "period": "May 2024",
+    "description": "Created system design and architecture for a student management platform, focusing on implementing various design patterns in Java to ensure scalability and maintainability. Developed and optimized the application with Java and GraalVM, enhancing performance and integration.",
+    "technologies": ["Java", "GraalVM", "Design Patterns", "System Architecture"],
+    "image": "/images/student-management-system.png",
+    "language": "Java"
+  },
+  {
+    "title": "Store Inventory Management System",
+    "period": "Feb 2022",
+    "description": "Designed a SQL-based database for a retail store, including tables, relationships, and queries to manage inventory. Implemented a Java application to connect to the SQL database, providing a user-friendly interface for store management to interact with the database, perform transactions, and generate reports.",
+    "technologies": ["Java", "SQL", "Database Design", "User Interface"],
+    "image": "/images/store-inventory-management-system.png",
+    "language": "Java"
+  },
+  {
+    "title": "Local Grocery Store App",
+    "period": "Current",
+    "description": "Modern React application for inventory management with dynamic routing and responsive design. Features include product catalog, inventory tracking, and interactive user interface built with contemporary web technologies.",
+    "technologies": ["React", "JavaScript", "Tailwind CSS", "React Router"],
+    "image": "/images/local-grocery-store-app.png",
+    "language": "JavaScript"
+  }
+]

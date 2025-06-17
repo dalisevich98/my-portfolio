@@ -1,0 +1,42 @@
+[
+  {
+    "title": "Software Engineer",
+    "company": "athenahealth",
+    "location": "Watertown, MA",
+    "period": "Mar 2024 - Present",
+    "achievements": [
+      "Developed and maintained scalable healthcare applications serving over 100,000+ providers nationwide",
+      "Implemented microservices architecture using Spring Boot and Kubernetes, improving system reliability by 35%",
+      "Optimized database queries and implemented caching strategies, reducing API response times by 40%",
+      "Collaborated with cross-functional teams to deliver HIPAA-compliant features for patient data management",
+      "Built automated testing frameworks with JUnit and Mockito, achieving 90%+ code coverage",
+      "Participated in code reviews and mentored junior developers on best practices and design patterns"
+    ]
+  },
+  {
+    "title": "Software Engineer",
+    "company": "Tracelink",
+    "location": "Wilmington, MA",
+    "period": "Jan 2024 - Mar 2024",
+    "achievements": [
+      "Engineered event-driven applications in Java and RxJava for critical database functions",
+      "Designed data and query caching strategies using Memcached, enhancing performance significantly",
+      "Implemented app bundling feature for Kubernetes pods, reducing AWS storage costs",
+      "Created Grafana dashboards for real-time database monitoring and visualization",
+      "Enhanced RocksDB interactions for improved performance and availability"
+    ]
+  },
+  {
+    "title": "Software Development Engineer in Test II",
+    "company": "Tracelink",
+    "location": "Wilmington, MA",
+    "period": "May 2022 - Jan 2024",
+    "achievements": [
+      "Created Java-based testing applications with RESTful APIs for database validation",
+      "Managed deployment using Helm and Elastic Kubernetes Service",
+      "Developed test framework for cross-region database replication validation",
+      "Automated Jenkins jobs replacing manual processes",
+      "Wrote Python scripts for automated data migration and snapshot creation"
+    ]
+  }
+]

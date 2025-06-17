@@ -1,0 +1,8 @@
+[
+  { "id": 1, "src": "/images/paris.jpg", "alt": "Paris Eiffel Tower", "category": "travel", "caption": "Evening in Paris, France" },
+  { "id": 2, "src": "/images/barcelona.jpg", "alt": "Barcelona Streets", "category": "travel", "caption": "Barcelona's vibrant charm and warmth." },
+  { "id": 3, "src": "/images/tracelink.jpg", "alt": "Diana at Tracelink", "category": "work", "caption": "Preparing for the meeting at Tracelink" },
+  { "id": 4, "src": "/images/coffee.jpg", "alt": "Coffee brewing setup", "category": "hobbies", "caption": "Morning coffee ritual" },
+  { "id": 5, "src": "/images/mountains.jpg", "alt": "Mountain landscape", "category": "travel", "caption": "Hiking in the Rocky Mountains" },
+  { "id": 6, "src": "/images/kitty.jpg", "alt": "Fluffy friend", "category": "work", "caption": "Spending time with kitty" }
+]

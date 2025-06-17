@@ -1,0 +1,14 @@
+[
+  { "name": "JavaScript", "level": 95, "category": "Web Languages" },
+  { "name": "TypeScript", "level": 90, "category": "Web Languages" },
+  { "name": "HTML5", "level": 95, "category": "Web Languages" },
+  { "name": "CSS3", "level": 90, "category": "Web Languages" },
+  { "name": "React", "level": 92, "category": "Frameworks" },
+  { "name": "Node.js", "level": 85, "category": "Frameworks" },
+  { "name": "Java", "level": 95, "category": "Backend" },
+  { "name": "Python", "level": 88, "category": "Backend" },
+  { "name": "SQL", "level": 90, "category": "Backend" },
+  { "name": "Docker", "level": 85, "category": "DevOps" },
+  { "name": "Kubernetes", "level": 80, "category": "DevOps" },
+  { "name": "AWS", "level": 82, "category": "DevOps" }
+]
