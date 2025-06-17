@@ -4,7 +4,7 @@ A modern, responsive portfolio website built with React, showcasing my skills, e
 
 ## Live Demo
 
-[View Live Portfolio](https://dianaali-portfolio.netlify.app)
+[View Live Portfolio](https://cute-dango-798d27.netlify.app)
 
 ## About
 
